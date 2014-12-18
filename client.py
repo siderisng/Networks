@@ -3,6 +3,12 @@ import sys  #for exit
 from thread import *
 
 
+
+   
+ 
+ 
+ 
+ 
 def ListenToTheServer():
     while(1) :
 
@@ -11,13 +17,25 @@ def ListenToTheServer():
         # receive data from client (data, addr)
             d = s.recvfrom(1024)
             reply = d[0]
-            addr = d[1]
+            
             print reply
-    
-
-
-
+            if reply == "Time to die":`
+                break
+            elif reply=='NEED FILE':
+                
+               s.sendto("OK" + d[7:] , (host, port))   
+               
+               
+#socket for sending file    
+try:
+    #create an AF_INET, STREAM socket (TCP)
+    send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+except socket.error, msg:
+    print 'Failed to create socket. Error code: ' + str(msg[0]) + ' , Error message : ' + msg[1]
+    sys.exit();
  
+print 'Socket Created'
+#main socket
 try:
     #create an AF_INET, STREAM socket (TCP)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,7 +45,7 @@ except socket.error, msg:
  
 print 'Socket Created'
  
-host = 'localhost'
+host = '192.168.1.5'
 port = 8888
  
 try:
@@ -56,8 +74,9 @@ start_new_thread(ListenToTheServer ,())
 while(1) :
        
     try:
+		
         msg = raw_input()
-        s.sendto(msg, (host, port))     
+        s.sendto(msg , (host, port))     
        
     except socket.error, msg:
         print 'Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
