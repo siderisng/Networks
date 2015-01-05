@@ -56,7 +56,7 @@ def ListenToTheServer():
             reply = d[0]   
             
 			
-            if reply[:2] != "NOT":
+            if reply != "NOT":
                
                 size = int(reply) 
                 nfile = open ("nFile_"+ str(i),'wb')
